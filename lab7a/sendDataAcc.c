@@ -30,9 +30,9 @@
 #endif
 
 
-#define SAMPLE_RATE 1024 //ticks.1024 ticks per sec & fs = 50Hz
+#define SAMPLE_RATE 32 //ticks.1024 ticks per sec & fs = 50Hz
 
-#define MY_SN_ID 4
+#define MY_SN_ID 10
 
 
 //global veriable

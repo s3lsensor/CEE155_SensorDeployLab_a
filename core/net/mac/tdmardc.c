@@ -476,8 +476,10 @@ static int off(int keep_radio_on)
   else
   {
     PRINTF("turn off RDC layer\n");
+#ifdef SF_MOTE_TYEP_SENSOR
     ctimer_stop(&SN_sleep_timer);
     ctimer_stop(&SN_listen_timer);
+#endif
     
     return NETSTACK_RADIO.off();
   }
