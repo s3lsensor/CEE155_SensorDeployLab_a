@@ -104,6 +104,21 @@ static void app_recv(void)
 //	uart1_writeb('\n');
 #endif
 
+#ifdef SF_MOTE_TYPE_SENSOR
+	rimeaddr_t *sent_sn_addr = packetbuf_addr(PACKETBUF_ADDR_SENDER);
+
+	uint8_t rx_sn_id = sent_sn_addr->u8[0];
+	uint8_t pkt_seq = packetbuf_attr(PACKETBUF_ATTR_PACKET_ID);
+	uint8_t payload_len = packetbuf_datalen();
+
+	if(rx_sn_id == 0)
+	{
+		printf("RX packet %u and %u bytes from BS\n",pkt_seq,payload_len);
+	}
+	
+#endif
+	
+
 	PROCESS_CONTEXT_END(&null_app_process);
 
 }
