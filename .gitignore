@@ -1,0 +1,46 @@
+# Object files
+*.o
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.pyc
+# Target objects
+*.sky
+!Makefile.sky
+*.d
+*.ihex
+*.data
+contiki*.a
+*.ce
+*.co
+*.map
+*.flash
+
+# Log files
+log*
+!log.h
+*.log
+*.csv
+
+# Ctags files
+*.tags
+*.tags*
+
+# Sublime text
+*.sublime-*
+
+# Eclipse
+*.cproejct
+*.project
