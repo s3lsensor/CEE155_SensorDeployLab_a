@@ -28,8 +28,7 @@
 #define PRINTF(...)
 #endif
 
-
-#define SAMPLE_RATE 1024 //ticks.1024 ticks per sec & fs = 50Hz
+#define SAMPLE_RATE 5 //ticks.1024 ticks per sec
 
 //global veriable
 static struct ctimer ct,reset_timer;
@@ -43,6 +42,8 @@ static uint8_t packet_counter = 0;
 static uint8_t has_reset = 0;
 
 static uint8_t MPU_status = 0;
+
+static uint16_t sample_counter = 0;
 /*---------------------------------------------------------------*/
 PROCESS(null_app_process, "MPU 6050 Process");
 AUTOSTART_PROCESSES(&null_app_process);
@@ -129,8 +130,9 @@ static void sample_fun(void)
 
 		//PRINTF("%d,%d,%d,%d,%d,%d,%d\n",sample_data.data.accel_x,sample_data.data.accel_y,sample_data.data.accel_z,sample_data.data.tp,sample_data.data.gyro_x,sample_data.data.gyro_y,sample_data.data.gyro_z);
 
-		printf("%d,%d,%d\n",sample_data.data.accel_x,sample_data.data.accel_y,sample_data.data.accel_z);
+		printf("%u,%d,%d,%d,%d\n",sample_counter,sample_data.data.accel_x,sample_data.data.accel_y,sample_data.data.accel_z,sample_data.data.tp);
 
+		sample_counter++;
 		// sending acceleration data
 		//mpu_get_acc(&sample_data,&data_sample);
 		//app_conn_send((uint8_t*)&data_sample,MPU_DATA_ACC_GYRO_SIZE);
@@ -248,9 +250,9 @@ PROCESS_THREAD(null_app_process, ev, data)
 		printf("Acceleromter config: %u\n",MPU_config);
 
 		// LPF: cut-off 21Hz for accel and 20Hz for gyro; DLPF_CFG = 4
-		read_mpu_reg(MPU_CONFIG,&MPU_config);
-		MPU_config = MPU_config | BV(2); // set bit 2 to 1, DLPF_CFG = 4
-		write_mpu_reg(MPU_CONFIG,MPU_config);
+//		read_mpu_reg(MPU_CONFIG,&MPU_config);
+//		MPU_config = MPU_config | BV(2); // set bit 2 to 1, DLPF_CFG = 4
+//		write_mpu_reg(MPU_CONFIG,MPU_config);
 #if DEBUG
 		read_mpu_reg(MPU_CONFIG,&MPU_config);
 		PRINTF("MPU 6050 config: %u\n",MPU_config);

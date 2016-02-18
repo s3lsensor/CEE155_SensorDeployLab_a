@@ -14,9 +14,9 @@
 #endif /* SN_ID == 0: Access point/Base station*/
 
 #if (SN_ID > 0)
-#if (SN_ID == 10)
-#error "SN_ID cannot be 10" //ascii 10 is line break
-#endif
+//#if (SN_ID == 10)
+//#error "SN_ID cannot be 10" //ascii 10 is line break
+//#endif
 #define SF_MOTE_TYPE_SENSOR
 #endif /* SN_ID >0: Sensor node*/
 

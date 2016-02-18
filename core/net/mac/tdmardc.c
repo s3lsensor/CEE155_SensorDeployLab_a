@@ -476,6 +476,9 @@ static int off(int keep_radio_on)
   else
   {
     PRINTF("turn off RDC layer\n");
+    ctimer_stop(&SN_sleep_timer);
+    ctimer_stop(&SN_listen_timer);
+    
     return NETSTACK_RADIO.off();
   }
 }
